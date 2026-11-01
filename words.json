@@ -1,0 +1,12 @@
+[
+  { "en": "hospital", "vn": "bệnh viện", "srsLevel": 0 },
+  { "en": "health", "vn": "sức khỏe", "srsLevel": 0 },
+  { "en": "surgery", "vn": "phẫu thuật", "srsLevel": 0 },
+  { "en": "cough", "vn": "ho", "srsLevel": 0 },
+  { "en": "flu", "vn": "cúm", "srsLevel": 0 },
+  { "en": "nurse", "vn": "y tá", "srsLevel": 0 },
+  { "en": "exercise", "vn": "tập thể dục", "srsLevel": 0 },
+  { "en": "medicine", "vn": "thuốc", "srsLevel": 0 },
+  { "en": "vaccine", "vn": "vắc-xin", "srsLevel": 0 },
+  { "en": "doctor", "vn": "bác sĩ", "srsLevel": 0 }
+]

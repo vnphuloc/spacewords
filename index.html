@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Space Vocabulary Typing Game - học từ vựng tiếng Anh trong không gian"
+    />
+    <title>Space Vocabulary</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="game-shell" aria-label="Space Vocabulary Typing Game">
+      <canvas id="game-canvas" aria-hidden="true"></canvas>
+
+      <div class="space-glow" aria-hidden="true"></div>
+      <div class="star-field star-field--front" aria-hidden="true"></div>
+      <div class="star-field star-field--back" aria-hidden="true"></div>
+
+      <section class="home-screen" id="home-screen" aria-labelledby="home-title">
+        <div class="home-screen__content">
+          <p class="eyebrow">Vocabulary mission control</p>
+          <h2 id="home-title">SPACE<span>WORDS</span></h2>
+          <p class="home-screen__intro">
+            Học từ vựng tiếng Anh qua những nhiệm vụ ngắn, trực quan và vui nhộn.
+          </p>
+          <div class="home-screen__actions" aria-label="Các chức năng chính">
+            <button type="button" class="mission-button mission-button--primary" data-action="start">
+              <span class="mission-button__icon">▶</span>
+              <span><strong>Start</strong><small>Bắt đầu nhiệm vụ</small></span>
+            </button>
+            <button type="button" class="mission-button" data-action="add">
+              <span class="mission-button__icon">＋</span>
+              <span><strong>Add</strong><small>Thêm từ vựng</small></span>
+            </button>
+            <button type="button" class="mission-button" data-action="browse">
+              <span class="mission-button__icon">◈</span>
+              <span><strong>Browse</strong><small>Chỉnh sửa dữ liệu</small></span>
+            </button>
+            <button type="button" class="mission-button" data-action="stats">
+              <span class="mission-button__icon">▥</span>
+              <span><strong>Stats</strong><small>Xem mức ghi nhớ</small></span>
+            </button>
+            <button type="button" class="mission-button" data-action="settings">
+              <span class="mission-button__icon">⚙</span>
+              <span><strong>Settings</strong><small>Chọn độ khó trò chơi</small></span>
+            </button>
+          </div>
+        </div>
+        <div class="home-screen__orbit" aria-hidden="true">
+          <span class="orbit orbit--one"></span>
+          <span class="orbit orbit--two"></span>
+          <span class="planet">✦</span>
+        </div>
+      </section>
+
+      <section class="tool-panel" id="tool-panel" hidden aria-live="polite">
+        <button class="tool-panel__close" data-action="close-panel" aria-label="Đóng bảng">×</button>
+        <div id="tool-panel-content"></div>
+      </section>
+
+      <section class="result-modal" id="result-modal" hidden aria-labelledby="result-modal-title" aria-modal="true" role="dialog">
+        <div class="result-modal__card">
+          <p class="eyebrow" id="result-modal-eyebrow">Mission complete</p>
+          <h2 id="result-modal-title">Mission complete</h2>
+          <p class="result-modal__message" id="result-modal-message"></p>
+          <div class="result-modal__score">
+            <span>FINAL SCORE</span>
+            <strong id="result-modal-score">000000</strong>
+          </div>
+          <div class="result-modal__actions">
+            <button type="button" class="panel-submit" data-action="restart-game">Chơi lại</button>
+            <button type="button" class="result-modal__secondary" data-action="close-result">Về trang chủ</button>
+          </div>
+        </div>
+      </section>
+
+      <header class="hud game-ui" hidden>
+        <div class="hud__stats" aria-label="Thông tin trò chơi">
+          <div class="stat-card">
+            <span class="stat-card__label">SCORE</span>
+            <strong id="score">000000</strong>
+          </div>
+          <div class="stat-card">
+            <span class="stat-card__label">STREAK</span>
+            <strong><span id="streak">0</span><small>×</small></strong>
+          </div>
+          <div class="stat-card stat-card--lives">
+            <span class="stat-card__label">LIVES</span>
+            <strong id="lives" aria-label="3 mạng sống">♥ ♥ ♥</strong>
+          </div>
+        </div>
+      </header>
+
+      <section class="mission-status game-ui" aria-live="polite" hidden>
+        <span class="status-dot" aria-hidden="true"></span>
+        <span id="mission-status">MISSION 0/20</span>
+      </section>
+
+      <div class="danger-zone game-ui" aria-hidden="true" hidden>
+      </div>
+
+      <section class="launch-area game-ui" aria-label="Khu vực tàu vũ trụ" hidden>
+        <div class="rocket" aria-hidden="true">
+          <div class="rocket__flame rocket__flame--outer"></div>
+          <div class="rocket__flame rocket__flame--inner"></div>
+          <div class="rocket__body">
+            <span class="rocket__window"></span>
+          </div>
+          <span class="rocket__fin rocket__fin--left"></span>
+          <span class="rocket__fin rocket__fin--right"></span>
+        </div>
+        <p class="launch-area__hint">
+          <span class="key-hint">TYPE</span> the missing letters to launch
+        </p>
+      </section>
+
+      <div class="top-vignette game-ui" aria-hidden="true" hidden></div>
+      <div class="bottom-vignette game-ui" aria-hidden="true" hidden></div>
+    </main>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
