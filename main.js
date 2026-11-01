@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const difficultyOptions = {
         easy: {
             label: 'Dễ',
-            description: 'Từ mới chỉ xuất hiện sau khi hoàn thành từ trước. Từ dài sẽ lùi nhẹ mỗi lần nhập đúng. Có 50% cơ hội hồi 1 tim.',
+            description: 'Từ mới chỉ xuất hiện sau khi hoàn thành từ trước. Tất cả từ sẽ lùi nhẹ mỗi lần nhập đúng. Có 50% cơ hội hồi 1 tim.',
             spawnProgress: null,
             speedMin: 0.85,
             speedMax: 0.85,
@@ -30,21 +30,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         },
         medium: {
             label: 'Trung bình',
-            description: 'Từ mới xuất hiện khi từ đang rơi đi được 60% màn hình. Có 30% cơ hội hồi 1 tim.',
+            description: 'Từ mới xuất hiện khi từ đang rơi đi được 60% màn hình. Từ sẽ lùi 8px mỗi lần nhập đúng. Có 30% cơ hội hồi 1 tim.',
             spawnProgress: 0.6,
             speedMin: 0.75,
             speedMax: 0.95,
             lifeRecoveryChance: 0.3,
-            correctCharacterRetreat: 0
+            correctCharacterRetreat: 8
         },
         hard: {
             label: 'Khó',
-            description: 'Từ mới xuất hiện khi từ đang rơi ở khoảng 40–50% màn hình. Có 10% cơ hội hồi 1 tim.',
+            description: 'Từ mới xuất hiện khi từ đang rơi ở khoảng 40–50% màn hình. Từ sẽ lùi 3px mỗi lần nhập đúng. Có 10% cơ hội hồi 1 tim.',
             spawnProgress: 0.45,
             speedMin: 0.65,
             speedMax: 1.05,
             lifeRecoveryChance: 0.1,
-            correctCharacterRetreat: 0
+            correctCharacterRetreat: 3
         }
     };
 
@@ -608,8 +608,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (typedChar === expectedChar) {
             currentTarget.typedCount++;
             if (
-                difficultyOptions[difficulty].correctCharacterRetreat > 0 &&
-                currentTarget.en.length > 5
+                difficultyOptions[difficulty].correctCharacterRetreat > 0
             ) {
                 gameEngine.retreatWord(
                     currentTarget,
@@ -630,8 +629,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 currentTarget = null;
                 gameEngine.activeLaserTarget = null;
                 if (
-                    difficultyOptions[difficulty].spawnProgress === null &&
-                    spawnedCount < maxWords
+                    spawnedCount < maxWords &&
+                    (
+                        difficultyOptions[difficulty].spawnProgress === null ||
+                        wordManager.activeWords.length === 0
+                    )
                 ) {
                     spawnWord();
                 }
